@@ -22,18 +22,18 @@ library(magrittr)
 library(modelsummary)
 library(readxl)
 
-#Borrower Race or National Origin
-#1=American Indian or Alaskan Native; 
-#2=Asian; 
-#3=Black or African American; 
-#4=Native Hawaiian or Other Pacific Islander; 
-#5=White; 
-#7=Information not provided by applicant in mail or telephone application
+# Borrower Race or National Origin
+# 1=American Indian or Alaskan Native; 
+# 2=Asian; 
+# 3=Black or African American; 
+# 4=Native Hawaiian or Other Pacific Islander; 
+# 5=White; 
+# 7=Information not provided by applicant in mail or telephone application
 # Gender
-#1=Male; 
-#2=Female; 
-#3=Information not provided by applicant in mail or telephone application; 
-#4=No Co-Borrower
+# 1=Male; 
+# 2=Female; 
+# 3=Information not provided by applicant in mail or telephone application; 
+# 4=No Co-Borrower
 # Credit Scores are separated into ranges:  1 = <620, 2 = 620 to < 660, 3 = 660 < 700, 4 = 700 < 760, 5 = 760 or greater
 
 df1 <- read_excel("/Users/home/Desktop/ECON 5253/DScourseS23/FinalProject/2019FHL.xlsx")
@@ -151,7 +151,9 @@ $$
 - Adjusted R-squared: 0.221
 
 # Model 2
-log(noteamt)=β0​+β1​⋅noteratepercent+β2​⋅LTV+β3​⋅(bo1race×year)+β4​⋅(bo1gender×year)+β5​⋅bo1age+β6​⋅debtexpenseratio+β7​⋅hsexpenseratio+ϵ
+$$
+\log(\text{noteamt}) = \beta_0 + \beta_1 \cdot \text{noteratepercent} + \beta_2 \cdot \text{LTV} + \beta_3 \cdot (\text{bo1race} \times \text{year}) + \beta_4 \cdot (\text{bo1gender} \times \text{year}) + \beta_5 \cdot \text{bo1age} + \beta_6 \cdot \text{debtexpenseratio} + \beta_7 \cdot \text{hsexpenseratio}
+$$
 
 # Model 2: Key Findings
 
