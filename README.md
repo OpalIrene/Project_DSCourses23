@@ -91,7 +91,7 @@ est3 <- lm(noteratepercent ~ debtexpenseratio + lognoteamt*year + LTV + bo1race*
 ```
 # Introduction
 
-The project answers a question about lending in Oklahoma; does mortgage lending differ among race or gender? The difference in difference analysis looks at data before and after the COVID 19 pandemic. Using linear regression the data-set is analyzed to reveal differences. Goal is to see if same effects in terms of LTV and note rate percent echo in Oklahoma mortgages as in previous findings. Then wanted to do difference in difference analysis to see if COVID-19 affected mortgage lending. 
+The project answers a question about lending in Oklahoma; does mortgage lending differ among race or gender? The difference in difference analysis looks at data before and after the COVID 19 pandemic. Using linear regression the data-set is analyzed to reveal differences. Goal is to see if same effects in terms of LTV and note rate percent echo in Oklahoma mortgages as in previous findings. The second part is a difference in difference analysis to see if COVID-19 affected mortgage lending. 
 
 # Study 1
 Study 1: According to Bartlett, Morse, and Stanton (2021), the median loan-to-value (LTV) ratio for Black borrowers with mortgage debt in the SCF+ in 2016 was roughly 66, compared to 52 for White borrowers.
