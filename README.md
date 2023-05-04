@@ -149,7 +149,7 @@ LTV = `$\beta_0$` + `$\beta_1$` $\log(\text{noteamt})$ + `$\beta_2$` $\text{note
 - Adjusted R-squared: 0.221
 
 # Model 2
-$\log(\text{noteamt})$ = `$\beta_0$` + `$\beta_1$` $\text{noteratepercent}$ + `$\beta_2$` $\text{LTV}$ + `$\beta_3$` $\text{bo1race} \times \text{year}$ + `$\beta_4$` $\text{bo1gender} \times \text{year}$ + `$\beta_5$` $\text{bo1age}$ + `$\beta_6$` $\text{debtexpenseratio}$ + `$\beta_7$` $\text{hsexpenseratio}$ + `$\epsilon$`
+log(noteamt)=β0​+β1​⋅noteratepercent+β2​⋅LTV+β3​⋅(bo1race×year)+β4​⋅(bo1gender×year)+β5​⋅bo1age+β6​⋅debtexpenseratio+β7​⋅hsexpenseratio+ϵ
 
 # Model 2: Key Findings
 
