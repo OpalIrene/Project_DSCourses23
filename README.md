@@ -140,7 +140,9 @@ The analysis employs multiple linear regression models to estimate the impact of
 
 # Model 1
 
-LTV = `$\beta_0$` + `$\beta_1$` $\log(\text{noteamt})$ + `$\beta_2$` $\text{noteratepercent}$ + `$\beta_3$` $\text{bo1race} \times \text{year}$ + `$\beta_4$` $\text{bo1gender} \times \text{year}$ + `$\beta_5$` $\text{bo1age}$ + `$\beta_6$` $\text{debtexpenseratio}$ + `$\epsilon$`
+$$
+\text{LTV} = \beta_0 + \beta_1 \log(\text{noteamt}) + \beta_2 \text{noteratepercent} + \beta_3 \text{bo1race} \times \text{year} + \beta_4 \text{bo1gender} \times \text{year} + \beta_5 \text{bo1age} + \beta_6 \text{debtexpenseratio} + \epsilon
+$$
 
 # Model 1: Key Findings
 
@@ -158,8 +160,9 @@ log(noteamt)=β0​+β1​⋅noteratepercent+β2​⋅LTV+β3​⋅(bo1race×yea
 - Adjusted R-squared: 0.1189
 
 # Model 3
-$\text{noteratepercent}$ = `$\beta_0$` + `$\beta_1$` $\text{debtexpenseratio}$ + `$\beta_2$` $\log(\text{noteamt}) \times \text{year}$ + `$\beta_3$` $\text{LTV}$ + `$\beta_4$` $\text{bo1race} \times \text{year}$ + `$\beta_5$` $\text{bo1gender} \times \text{year}$ + `$\beta_6$` $\text{bo1age}$ + `$\epsilon$`
-
+$$
+\text{noteratepercent}$ = \beta_0 + \beta_1 \text{debtexpenseratio} + \beta_2 \log(\text{noteamt}) \times \text{year} + \beta_3 \text{LTV} + \beta_4 \text{bo1race} \times \text{year} + \beta_5 \text{bo1gender} \times \text{year} + \beta_6 \text{bo1age} + \epsilon
+$$
 # Model 3: Key Findings
 
 - Significant predictors: debtexpenseratio, lognoteamt, year2021, LTV, bo1race4, and year2021:bo1gender2
