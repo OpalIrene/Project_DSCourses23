@@ -152,7 +152,7 @@ $$
 
 # Model 2
 $$
-\text{lognoteamt} = \text{noteratepercent} + \text{LTV} + \text{bo1race} \times \text{year} + \text{bo1gender} \times \text{year} + \text{bo1age} + \text{debtexpenseratio} + \text{hsexpenseratio}
+\text{lognoteamt} = \text{noteratepercent} + \text{LTV} + \text{bo1race} \times \text{year} + \text{bo1gender} \times \text{year} + \text{bo1age} + \text{debtexpenseratio} + \text{hsexpenseratio} + \epsilon
 $$
 
 # Model 2: Key Findings
@@ -163,7 +163,7 @@ $$
 
 # Model 3
 $$
-\text{noteratepercent}$ = \beta_0 + \beta_1 \text{debtexpenseratio} + \beta_2 \log(\text{noteamt}) \times \text{year} + \beta_3 \text{LTV} + \beta_4 \text{bo1race} \times \text{year} + \beta_5 \text{bo1gender} \times \text{year} + \beta_6 \text{bo1age} + \epsilon
+\text{noteratepercent} = \text{debtexpenseratio} + \text{lognoteamt} + \text{LTV} + \text{bo1race} \times \text{year} + \text{bo1gender} \times \text{year} + \text{bo1age} + \epsilon
 $$
 # Model 3: Key Findings
 
