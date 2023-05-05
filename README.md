@@ -181,7 +181,7 @@ modelsummary(list(est1, est2, est3), stars = T)
 ```
 
 # Conclusion
-The results suggest that there are significant differences in mortgage lending in Oklahoma based on race and gender. In 2019, the average mortgage note amount was the highest for the Asian borrower group, followed by White, Black, Pacific Islander, and Native American borrowers. In 2021, the average mortgage note amount increased for all racial groups, with the most significant increase observed in the Black borrower group. However, more studies would need to be done considering other variables such as Census tract and it would have to control for sorting by salary or culture. 
+The results suggest that there are significant differences in mortgage lending in Oklahoma based on race and gender. In 2019, the average mortgage note amount was the highest for the Asian borrower group, followed by White, Black, Pacific Islander, and Native American borrowers. In 2021, the average mortgage note amount increased for all racial groups, with the most significant increase observed in the Black borrower group. However, more studies would need to be done considering other variables such as area like the Census tract, and it would have to control for sorting by salary or culture. 
 
 
 
