@@ -85,7 +85,7 @@ df <- df %>% mutate(year= as.factor(year))
 
 est1 <- lm(LTV ~ lognoteamt + noteratepercent + bo1race*year + bo1gender*year + bo1age + debtexpenseratio, data=df)
 
-est2 <- lm(lognoteamt ~ noteratepercent + LTV + bo1race + bo1gender + bo1age + debtexpenseratio + hsexpenseratio, data=df)
+est2 <- lm(lognoteamt ~ noteratepercent + LTV + bo1race*year + bo1gender*year + bo1age + debtexpenseratio + hsexpenseratio, data=df)
 
 est3 <- lm(noteratepercent ~ debtexpenseratio + lognoteamt*year + LTV + bo1race*year + bo1gender*year + bo1age, data=df)
 ```
@@ -152,7 +152,7 @@ $$
 
 # Model 2
 $$
-\log(\text{noteamt}) = \beta_0 + \beta_1 \cdot \text{noteratepercent} + \beta_2 \cdot \text{LTV} + \beta_3 \cdot (\text{bo1race} \times \text{year}) + \beta_4 \cdot (\text{bo1gender} \times \text{year}) + \beta_5 \cdot \text{bo1age} + \beta_6 \cdot \text{debtexpenseratio} + \beta_7 \cdot \text{hsexpenseratio}
+\text{lognoteamt} = \text{noteratepercent} + \text{LTV} + \text{bo1race} \times \text{year} + \text{bo1gender} \times \text{year} + \text{bo1age} + \text{debtexpenseratio} + \text{hsexpenseratio}
 $$
 
 # Model 2: Key Findings
