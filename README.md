@@ -79,7 +79,7 @@ df2 %<>% mutate(lognoteamt = log(noteamt))
 df2 %<>% mutate(logtotmonthincome = log(totmonthlyincome))
 df2 %<>% select(noteamt, lognoteamt, totmonthlyincome, logtotmonthincome, noteratepercent, LTV, bo1race, bo1age, bo1gender, hsexpenseratio, debtexpenseratio,year)
 
-# mutate both years together after cbind
+# mutate both years together after rbind
 df <- rbind(df1, df2)
 df <- df %>% mutate(year= as.factor(year))
 
