@@ -33,6 +33,11 @@ library(readxl)
 # 1=Male; 
 # 2=Female; 
 
+# data source
+# 2019
+# 2021
+https://www.fhfa.gov/DataTools/Downloads/Pages/Public-Use-Databases.aspx
+
 df1 <- read_excel("/Users/home/Desktop/ECON 5253/DScourseS23/FinalProject/2019FHL.xlsx")
 df1 <- data.frame(df1)
 names(df1) <- c("totmonthlyincome","LTV",
