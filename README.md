@@ -28,13 +28,10 @@ library(readxl)
 # 3=Black or African American; 
 # 4=Native Hawaiian or Other Pacific Islander; 
 # 5=White; 
-# 7=Information not provided by applicant in mail or telephone application
+
 # Gender
 # 1=Male; 
 # 2=Female; 
-# 3=Information not provided by applicant in mail or telephone application; 
-# 4=No Co-Borrower
-# Credit Scores are separated into ranges:  1 = <620, 2 = 620 to < 660, 3 = 660 < 700, 4 = 700 < 760, 5 = 760 or greater
 
 df1 <- read_excel("/Users/home/Desktop/ECON 5253/DScourseS23/FinalProject/2019FHL.xlsx")
 df1 <- data.frame(df1)
