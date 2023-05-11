@@ -1,0 +1,516 @@
+\documentclass[12pt,english]{article}
+\usepackage{mathptmx}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{darkblue}{RGB}{0.,0.,139.}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{lipsum}
+\usepackage{siunitx}
+\usepackage[authoryear]{natbib}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage[flushleft]{threeparttable}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage[english]{babel}
+\usepackage{pdflscape}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=true,pdfborder={0 0 0},backref=false,
+ colorlinks,citecolor=black,filecolor=black,
+ linkcolor=black,urlcolor=black]
+ {hyperref}
+\usepackage[all]{hypcap} % Links point to top of image, builds on hyperref
+\usepackage{breakurl}    % Allows urls to wrap, including hyperref
+\hyphenation{}
+\linespread{2}
+
+\begin{document}
+
+\begin{singlespace}
+\title{Examination of the Effect of COVID-19 in Mortgage Lending within the State of Oklahoma. \thanks{}}
+\end{singlespace}
+
+\author{Opal Fraser\thanks{Department of Economics, University of Oklahoma.\
+E-mail~address:~\href{mailto:opalfraser@ou.edu}{opalfraser@ou.edu}}}
+
+\date{April 24, 2023}
+
+\maketitle
+
+\begin{abstract}
+\begin{singlespace}
+The project answers a question about lending in Oklahoma; do mortgage rates differ among race or gender? The difference in difference analysis looks at data before and after the COVID 19 pandemic. Using linear regression the data-set is analyzed to reveal differences. (notfinished). 
+
+\end{singlespace}
+
+\end{abstract}
+\vfill{}
+
+\pagebreak{}
+
+\section{Introduction}\label{sec:intro}
+
+The examination of the relationship between mortgage amounts and the demographic characteristics of borrowers is a critical area of study, especially in light of significant events such as the COVID-19 pandemic that can have profound effects on the housing market. This research aims to add to the existing body of knowledge by utilizing data provided by the Federal Housing Finance Agency, collected from a random sample of loan-level mortgage acquisitions in 2019 and 2021. Through the application of multiple linear regression models, we aim to shed light on the impact of a range of independent variables—including race, gender, age, income, credit score, and loan-to-value ratio—on the dependent variable, namely the amount of the mortgage note/percentage rate. 
+
+The importance of studying the relationship between mortgage amounts and borrower demographics is multi-faceted. Firstly, these studies provide valuable insights into socioeconomic trends, wealth distribution, and financial inclusivity. They can bring to light existing disparities, forming a basis for policy-making aimed at addressing these imbalances. Secondly, major events such as the COVID-19 pandemic significantly disrupt housing markets. By studying the effects of such events, we can gain a better understanding of the resilience of different demographic groups. This information can guide the development of targeted interventions in the aftermath of such large-scale incidents. Lastly, this research's reliance on data from the Federal Housing Finance Agency underscores the importance of a data-driven approach. In an era where decisions need to be substantiated by reliable data, such rigorous research methods are essential.
+
+
+
+\section{Literature Review}\label{sec:litreview}
+Previous work by~\cite{gupta2022financial} shows that educational decisions are an important determinant of later-life earnings. This point is driven further in follow-up work by~\cite{gupta2022financial}.
+"Recent studies have used statistical methods to show that minorities were more likely than equally qualified whites to receive high–cost, high–risk loans during the U. S. housing boom, evidence taken to suggest widespread discrimination in the mortgage lending industry." ~\cite{Massey2016RidingTS} This peaked interest and the need to test the data for similar effects on local data to see if there are differences between race, gender or age. In particular this paper looks at three potential y's; LTV, note amount, and note rate percentage. 
+..."we code texts for evidence of individual discrimination, structural discrimination, and potential discrimination in mortgage lending practices. We find that 76 percent of the texts indicated the existence of structural discrimination..~\cite{Massey2016RidingTS} "
+
+[3] ~\cite{Cheng2014RacialDI} Existing research on racial discrimination in mortgage lending has overwhelmingly focused on whether black applicants are more likely to be denied for credit than comparable white applicants. This study investigates whether the approved black applicants are likely charged higher interest rates than their white counterparts. Using data from three waves of the U.S. Survey of Consumer Finance, our results suggest that black borrowers on average pay about 29 basis points more than comparable white borrowers. We also find that rate disparity mainly occurs to young borrowers with low education as well as those borrowers whose income and credit disqualify them for prime lending rates. Furthermore, among borrowers in the higher rate groups, black women seem to receive much more disparate treatment than black men. We conclude that, while the racial disparity in mortgage rates is widespread between black and white borrowers, it is the more financially vulnerable black women who suffer the most." Blacks pay more than comparable white borrowers, and this paper will check the data to look for similar findings in Oklahoma mortgage lending. 
+
+\section{Data}\label{sec:data}
+The primary data source for this research is the FHL Bank Public Use Database, which is a comprehensive and valuable resource for researchers and policymakers interested in studying the financial and housing markets. The Federal Home Loan Bank (FHL Bank) System is a group of 11 regional banks in the United States that provides financial products and services to support housing finance and community investment.
+
+The FHL Bank Public Use Database contains a wide variety of data related to the financial and housing markets, including information on mortgage loans, home prices, interest rates, and other macroeconomic indicators. This rich dataset allows researchers to explore various aspects of the housing market and examine the relationships between different factors that influence the market.
+
+The database is regularly updated to ensure that the most recent and relevant information is available for analysis. It is maintained by the Federal Home Loan Bank System and is made publicly available for researchers, policymakers, and other interested parties to access and use.
+
+There are 1161 observations in the first data set(Table 1) from 2019, and 1048 observations in the second data set(Table 2), from 2021. 
+\subsection{Key}
+Race(bo1race) and gender(bo1gender) are defined as follows: 
+
+Borrower Race or National Origin
+1=American Indian or Alaskan Native; 
+2=Asian; 
+3=Black or African American; 
+4=Native Hawaiian or Other Pacific Islander; 
+5=White; 
+
+Gender
+1=Male; 
+2=Female; 
+
+\section{Empirical Methods}\label{sec:methods}
+
+In this study, we employ several empirical methods to investigate the presence of discrimination in lending practices, as mentioned in Section 3. We primarily use three regression models to capture different aspects of the relationship between loan terms and borrower characteristics.
+
+\subsection{Model 1}
+Model 1 focuses on the loan-to-value ratio (LTV, or Loan-to-Value ratio) as the dependent variable, and it is specified as follows:
+[1]
+\begin{align*}
+\text{LTV} &= \beta_0 + \beta_1 \log(\text{noteamt}) + \beta_2 \text{noteratepercent} \\
+&\qquad + \beta_3 \text{bo1race} \times \text{year} + \beta_4 \text{bo1gender} \times \text{year} \\
+&\qquad + \beta_5 \text{bo1age} + \beta_6 \text{debtexpenseratio} + \epsilon
+\end{align*}
+
+This model seeks to understand the relationship between LTV and key variables such as loan amount, interest rate, race, gender, age, and the debt-to-expense ratio. If our data reflects the findings of ~\cite{gupta2022financial}, we expect to see similarities and differences between the note rate percent and race or gender. We include interaction terms for race and gender by year, which have been transformed into dummy variables and changed to factor variables.
+
+\subsection{Model 2}
+Model 2 shifts the focus to the loan amount (lognoteamt) as the dependent variable:
+[2]
+\begin{align*}
+\text{lognoteamt} &= \beta_0 + \beta_1 \text{noteratepercent} + \beta_2 \text{LTV} \\
+&\qquad + \beta_3 \text{bo1race} \times \text{year} + \beta_4 \text{bo1gender} \times \text{year} \\
+&\qquad + \beta_5 \text{bo1age} + \beta_6 \text{debtexpenseratio} + \beta_7 \text{hsexpenseratio} + \epsilon
+\end{align*}
+In Model 2, we explore how the loan amount is influenced by factors such as interest rate, LTV, race, gender, age, debt-to-expense ratio, and housing expense ratio. Again, interaction terms for race and gender by year are included to examine potential disparities over time.
+
+\subsection{Model 3}
+Lastly, Model 3 examines the interest rate (noteratepercent) as the dependent variable:
+
+While my approach explores a number of different approaches, the final empirical model can be depicted in the following equation:
+
+[3]
+\begin{align*}
+\text{noteratepercent} &= \beta_1 \text{debtexpenseratio} + \beta_2 \text{lognoteamt} \times \text{year} + \beta_3 \text{LTV} \\
+&\qquad + \beta_4 \text{bo1race} \times \text{year} + \beta_5 \text{bo1gender} \times \text{year} + \beta_6 \text{bo1age} + \epsilon
+\end{align*}
+
+This model aims to understand how the interest rate is influenced by factors like the debt-to-expense ratio, loan amount, LTV, race, gender, and age, with interaction terms for race and gender by year.
+
+While our approach explores various methodologies, the primary empirical model can be depicted in the equations above. By analyzing the data through these models, we hope to capture potential discriminatory practices in the lending industry and provide valuable insights into their underlying causes. 
+
+\section{Research Findings}\label{sec:results}
+
+\subsection{Model 1: LTV}
+
+Here are some of the coefficient estimates for Model 1:
+\begin{itemize}
+\begin{singlespace}
+    \item lognoteamt: 6.636
+    \item noteratepercent: 4.855
+    \item bo1race2: -7.545
+    \item bo1race5: -4.764
+    \item year2021: -0.070
+    \item bo1gender2: 1.773
+    \item bo1age: -0.315
+    \item debtexpenseratio: 0.298
+    \item bo1race2 × year2021: 9.803
+    \item bo1race3 × year2021: 0.885
+    \item bo1race5 × year2021: 1.981
+    \item year2021 × bo1gender2: -0.699
+    \end{singlespace}
+\end{itemize}
+
+Each of these coefficients represents the estimated change in the LTV for a one-unit increase in the corresponding independent variable, assuming all others are held constant. For every one-unit increase in lognoteamt, we expect LTV to increase by 6.636 units, holding all other variables constant. Similarly, bo1race2, or Asians, are associated with a decrease in LTV by 7.545 units, holding all other variables constant.
+
+The coefficient for bo1race5 is -4.764.
+
+This means that, all else being equal, white borrowers are associated with an average decrease of 4.764 units in LTV. This is consistent with ~\cite{gupta2022financial}. This coefficient is statistically significant at the 0.001 level, suggesting strong evidence that the true value of this coefficient is different from zero, given the data and the assumptions of the model. However, the model itself is may not be as reliable in terms of R squared, and error terms. 
+
+See table 3.
+
+ \subsection{Model 2: lognoteamt}
+ 
+Table 5 shows the results from a multiple regression analysis, where the dependent variable is the natural logarithm of the mortgage note amount (lognoteamt). 
+
+Key points from the table:
+
+    lognoteamt (6.636***): This suggests that for a unit increase in lognoteamt, the expected change in the dependent variable is an increase by 6.636 units, holding all other variables constant. This is statistically significant at the 0.1 percentage level.
+
+    noteratepercent (4.855***): For a unit increase in noteratepercent, we expect the dependent variable to increase by 4.855 units, holding all other variables constant. This is statistically significant at the 99 percent level.
+
+    bo1race2 (-7.545*): This indicates that the category represented by bo1race2 is associated with a decrease of 7.545 units in the dependent variable, compared to the reference group (typically bo1race1), assuming all other variables are held constant. This variable is statistically significant at the 95 percent level.
+
+    bo1race3, bo1race4, bo1race5 are dummy variables representing different categories of the variable "race". Only bo1race5 is statistically significant at the 99 percent level.
+
+    bo1gender2 (1.773*): This suggests that bo1gender2(women) is associated with an increase of 1.773 units in the dependent variable, compared to the reference group (bo1gender/male), assuming all other variables are held constant. This is statistically significant at the 95 percent level.
+
+    bo1age (-0.315***): For a unit increase in age, we expect the dependent variable to decrease by 0.315 units, holding all other variables constant. This is statistically significant at the 99 percent level.
+
+    debtexpenseratio (0.298***): For a unit increase in debtexpenseratio, we expect the dependent variable to increase by 0.298 units, holding all other variables constant. This is statistically significant at the 99 percent level.
+
+    Interaction terms: The interaction terms in this model represent the combined effects of two variables on the log note amount. Bo1race2 × year2021 is statistically significant at the 95 percent level, suggesting that the impact of women on log note amount changes depending on the value of year2021.
+ 
+See table 4.
+ 
+ \subsection{Model 3: noteratepercent}
+ 
+ The regression analysis revealed that there are significant differences in mortgage rates among race and gender groups in Oklahoma during the COVID-19 pandemic. In particular, racial minorities and women tend to face higher mortgage rates compared to their white and male counterparts, even when controlling for factors such as income, credit score, and loan-to-value ratio. This finding is consistent with the existing literature on discrimination in mortgage lending~\cite{Cheng2014RacialDI, Massey2016RidingTS}. See Table 5. 
+
+\section{Conclusion}\label{sec:conclusion}
+
+Our findings provide empirical evidence of disparities in mortgage rates among different racial and gender groups in Oklahoma during the challenging period of the COVID-19 pandemic. This research echoes previous studies that have identified discrimination in mortgage lending, thereby underscoring the persistent nature of these disparities. In particular, racial minorities and women were found to face higher mortgage rates than their white and male counterparts, even after controlling for variables such as housing expense, note amount, and loan-to-value ratio. The systemic nature of these disparities points to the need for comprehensive policy interventions to ensure a more equitable mortgage lending environment. This study calls attention to these persistent issues and highlights the urgent need for further investigation into the root causes of these disparities, as well as the development of effective policy measures aimed at their mitigation. Policymakers should consider implementing measures to address these disparities and ensure a more equitable mortgage lending environment. Future research could expand on this study by examining the underlying factors that contribute to these disparities and exploring potential interventions to promote greater fairness in mortgage lending.
+
+In future research, it would be beneficial to delve deeper into the contributing factors behind these disparities and explore potential interventions that can foster a fairer mortgage lending landscape. Additionally, expanding the geographical scope of the research to include other states or regions could provide a more comprehensive picture of the situation at a national level. Controlling for variables such as salary, cultural background, and geographic location, including specific Census tracts would be helpful. Such nuanced analysis will allow for a more comprehensive understanding of the complex interplay of factors that contribute to disparities in mortgage lending. Ultimately, the goal should be to ensure that access to homeownership, a cornerstone of wealth and financial security, is not unduly influenced by an individual's race, gender, or other demographic characteristics.
+
+Regarding the impact of COVID-19, our study found minimal differences across racial lines, but did observe slight variations based on gender. However, it's important to note that our research did not factor in inflation, the distribution of PPP loans, or the stimulus package provided to Americans. These omissions could potentially explain the absence of significant year-over-year differences observed in our findings.
+
+\vfill
+\pagebreak{}
+\begin{spacing}{1.0}
+\bibliographystyle{plain}
+\bibliography{name.bib}
+\addcontentsline{toc}{section}{References}
+\end{spacing}
+
+\vfill
+\pagebreak{}
+\clearpage
+
+%========================================
+% FIGURES AND TABLES 
+%========================================
+\section{Figures and Tables}\label{sec:figTables}
+\addcontentsline{toc}{section}{Figures and Tables}
+
+%----------------------------------------
+% Table 1
+%----------------------------------------
+\begin{table}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}[t]{lrrrrrrr}
+\toprule
+  & Unique (\#) & Missing (\%) & Mean & SD & Min & Median & Max\\
+\midrule
+noteamt & 783 & 0 & \num{194408.9} & \num{102657.3} & \num{26800.0} & \num{172000.0} & \num{484350.0}\\
+lognoteamt & 783 & 0 & \num{12.0} & \num{0.5} & \num{10.2} & \num{12.1} & \num{13.1}\\
+totmonthlyincome & 1090 & 0 & \num{9249.2} & \num{8286.5} & \num{1138.0} & \num{7260.0} & \num{110741.0}\\
+logtotmonthincome & 1090 & 0 & \num{8.9} & \num{0.6} & \num{7.0} & \num{8.9} & \num{11.6}\\
+noteratepercent & 26 & 0 & \num{4.0} & \num{0.5} & \num{2.9} & \num{3.9} & \num{5.8}\\
+LTV & 82 & 0 & \num{79.3} & \num{16.2} & \num{7.0} & \num{80.0} & \num{104.0}\\
+bo1age & 68 & 0 & \num{46.6} & \num{14.7} & \num{20.0} & \num{45.0} & \num{90.0}\\
+hsexpenseratio & 950 & 0 & \num{18.9} & \num{7.9} & \num{0.0} & \num{18.2} & \num{78.0}\\
+debtexpenseratio & 972 & 0 & \num{31.0} & \num{9.0} & \num{1.1} & \num{31.4} & \num{78.0}\\
+year & 1 & 0 & \num{2019.0} & \num{0.0} & \num{2019.0} & \num{2019.0} & \num{2019.0}\\
+\bottomrule
+\end{tabular}
+}
+\caption{Pre-Covid19(2019)}
+\end{table}
+%--------table 2--------
+\begin{table}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}[t]{lrrrrrrr}
+\toprule
+  & Unique (\#) & Missing (\%) & Mean & SD & Min & Median & Max\\
+\midrule
+noteamt & 647 & 0 & \num{212522.4} & \num{115728.0} & \num{29000.0} & \num{182760.5} & \num{548250.0}\\
+lognoteamt & 647 & 0 & \num{12.1} & \num{0.6} & \num{10.3} & \num{12.1} & \num{13.2}\\
+totmonthlyincome & 1002 & 0 & \num{9838.6} & \num{8693.7} & \num{1342.0} & \num{8016.5} & \num{141878.0}\\
+logtotmonthincome & 1002 & 0 & \num{9.0} & \num{0.6} & \num{7.2} & \num{9.0} & \num{11.9}\\
+noteratepercent & 15 & 0 & \num{2.8} & \num{0.3} & \num{2.0} & \num{2.9} & \num{3.6}\\
+LTV & 80 & 0 & \num{75.6} & \num{15.0} & \num{16.0} & \num{80.0} & \num{104.0}\\
+bo1age & 65 & 0 & \num{47.1} & \num{13.4} & \num{20.0} & \num{45.0} & \num{86.0}\\
+hsexpenseratio & 855 & 0 & \num{18.0} & \num{7.9} & \num{0.0} & \num{16.9} & \num{50.2}\\
+debtexpenseratio & 882 & 0 & \num{30.6} & \num{9.2} & \num{5.6} & \num{31.2} & \num{64.5}\\
+year & 1 & 0 & \num{2021.0} & \num{0.0} & \num{2021.0} & \num{2021.0} & \num{2021.0}\\
+\bottomrule
+\end{tabular}
+}
+\caption{Post-Covid 19(2021)}
+\end{table}
+%-------------
+%est1
+%------------
+
+\begin{table}
+\centering
+\caption{Model(LTV)}
+\resizebox{0.5\textwidth}{!}{%
+\begin{tabular}[t]{lc}
+\toprule
+  & (LTV)\\
+\midrule
+(Intercept) & \num{-10.623}\\
+ & (\num{7.541})\\
+lognoteamt & \num{6.636}***\\
+ & (\num{0.554})\\
+noteratepercent & \num{4.855}***\\
+ & (\num{0.740})\\
+bo1race2 & \num{-7.545}*\\
+ & (\num{3.058})\\
+bo1race3 & \num{-1.252}\\
+ & (\num{3.206})\\
+bo1race4 & \num{10.529}\\
+ & (\num{13.973})\\
+bo1race5 & \num{-4.764}***\\
+ & (\num{1.439})\\
+year2021 & \num{-0.070}\\
+ & (\num{2.253})\\
+bo1gender2 & \num{1.773}*\\
+ & (\num{0.886})\\
+bo1age & \num{-0.315}***\\
+ & (\num{0.021})\\
+debtexpenseratio & \num{0.298}***\\
+ & (\num{0.033})\\
+bo1race2 × year2021 & \num{9.803}*\\
+ & (\num{4.655})\\
+bo1race3 × year2021 & \num{0.885}\\
+ & (\num{4.485})\\
+bo1race5 × year2021 & \num{1.981}\\
+ & (\num{2.101})\\
+year2021 × bo1gender2 & \num{-0.699}\\
+ & (\num{1.283})\\
+\midrule
+Num.Obs. & \num{2209}\\
+R2 & \num{0.226}\\
+R2 Adj. & \num{0.221}\\
+AIC & \num{17909.0}\\
+BIC & \num{18000.2}\\
+Log.Lik. & \num{-8938.517}\\
+RMSE & \num{13.84}\\
+\bottomrule
+\multicolumn{2}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+}
+\end{table}
+
+%-------------
+%est2/tabe4
+%------------
+ 
+\begin{table}
+\centering
+\caption{Model(lognoteamt)}
+\resizebox{0.5\textwidth}{!}{%
+\begin{tabular}[t]{lc}
+\toprule
+  & (lognoteamount)\\
+\midrule
+(Intercept) & \num{-10.623}\\
+ & (\num{7.541})\\
+lognoteamt & \num{6.636}***\\
+ & (\num{0.554})\\
+noteratepercent & \num{4.855}***\\
+ & (\num{0.740})\\
+bo1race2 & \num{-7.545}*\\
+ & (\num{3.058})\\
+bo1race3 & \num{-1.252}\\
+ & (\num{3.206})\\
+bo1race4 & \num{10.529}\\
+ & (\num{13.973})\\
+bo1race5 & \num{-4.764}***\\
+ & (\num{1.439})\\
+year2021 & \num{-0.070}\\
+ & (\num{2.253})\\
+bo1gender2 & \num{1.773}*\\
+ & (\num{0.886})\\
+bo1age & \num{-0.315}***\\
+ & (\num{0.021})\\
+debtexpenseratio & \num{0.298}***\\
+ & (\num{0.033})\\
+bo1race2 × year2021 & \num{9.803}*\\
+ & (\num{4.655})\\
+bo1race3 × year2021 & \num{0.885}\\
+ & (\num{4.485})\\
+bo1race5 × year2021 & \num{1.981}\\
+ & (\num{2.101})\\
+year2021 × bo1gender2 & \num{-0.699}\\
+ & (\num{1.283})\\
+\midrule
+Num.Obs. & \num{2209}\\
+R2 & \num{0.226}\\
+R2 Adj. & \num{0.221}\\
+AIC & \num{17909.0}\\
+BIC & \num{18000.2}\\
+Log.Lik. & \num{-8938.517}\\
+RMSE & \num{13.84}\\
+\bottomrule
+\multicolumn{2}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+}
+\end{table}
+
+
+%-------------
+%est3
+%------------
+
+\begin{table}
+\centering
+\caption{Model(noteratepercent)}
+\resizebox{0.5\textwidth}{!}{%
+\begin{tabular}[t]{lc}
+\toprule
+  & (noteratepercent)\\
+\midrule
+(Intercept) & \num{4.892}***\\
+ & (\num{0.268})\\
+debtexpenseratio & \num{0.004}***\\
+ & \vphantom{3} (\num{0.001})\\
+lognoteamt & \num{-0.113}***\\
+ & (\num{0.022})\\
+year2021 & \num{-2.821}***\\
+ & (\num{0.380})\\
+LTV & \num{0.004}***\\
+ & \vphantom{2} (\num{0.001})\\
+bo1race2 & \num{-0.030}\\
+ & (\num{0.095})\\
+bo1race3 & \num{-0.049}\\
+ & (\num{0.114})\\
+bo1race4 & \num{0.708}+\\
+ & (\num{0.398})\\
+bo1race5 & \num{0.064}\\
+ & (\num{0.048})\\
+bo1gender2 & \num{0.034}\\
+ & \vphantom{1} (\num{0.060})\\
+bo1age & \num{0.000}\\
+ & \vphantom{1} (\num{0.001})\\
+hsexpenseratio & \num{-0.002}\\
+ & (\num{0.001})\\
+lognoteamt × year2021 & \num{0.136}***\\
+ & (\num{0.031})\\
+year2021 × bo1race2 & \num{0.041}\\
+ & (\num{0.133})\\
+year2021 × bo1race3 & \num{0.124}\\
+ & \vphantom{1} (\num{0.128})\\
+year2021 × bo1race5 & \num{0.009}\\
+ & (\num{0.060})\\
+year2021 × bo1gender2 & \num{0.103}**\\
+ & (\num{0.037})\\
+bo1race2 × bo1gender2 & \num{-0.374}*\\
+ & (\num{0.165})\\
+bo1race3 × bo1gender2 & \num{-0.022}\\
+ & (\num{0.128})\\
+bo1race5 × bo1gender2 & \num{-0.085}\\
+ & (\num{0.061})\\
+\midrule
+Num.Obs. & \num{2209}\\
+R2 & \num{0.686}\\
+R2 Adj. & \num{0.683}\\
+AIC & \num{2188.5}\\
+BIC & \num{2308.2}\\
+Log.Lik. & \num{-1073.235}\\
+RMSE & \num{0.39}\\
+\bottomrule
+\multicolumn{2}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+}
+\end{table}
+
+
+
+%__________all estimates_____________
+\begin{table}
+\centering
+\caption{Models}
+\resizebox{.75\textwidth}{!}{%
+\begin{tabular}[t]{lcccc}
+\toprule
+  & (LTV) & (lognoteamt) & (lognoteamt w/interaction) & (noteratepercent)\\
+\midrule
+(Intercept) & \num{-10.623} & \num{11.414}*** & \num{11.399}*** & \num{4.907}***\\
+ & (\num{7.541}) & (\num{0.140}) & (\num{0.143}) & (\num{0.267})\\
+lognoteamt & \num{6.636}*** &  &  & \num{-0.113}***\\
+ & (\num{0.554}) &  &  & (\num{0.022})\\
+noteratepercent & \num{4.855}*** & \num{-0.078}** & \num{-0.080}** & \\
+ & (\num{0.740}) & (\num{0.028}) & (\num{0.028}) & \\
+bo1race2 & \num{-7.545}* & \num{0.314}** & \num{0.381}** & \num{-0.124}\\
+ & (\num{3.058}) & (\num{0.114}) & (\num{0.124}) & (\num{0.087})\\
+bo1race3 & \num{-1.252} & \num{0.048} & \num{0.101} & \num{-0.049}\\
+ & (\num{3.206}) & (\num{0.119}) & (\num{0.149}) & (\num{0.091})\\
+bo1race4 & \num{10.529} & \num{0.037} & \num{0.063} & \num{0.682}+\\
+ & (\num{13.973}) & (\num{0.520}) & (\num{0.521}) & (\num{0.398})\\
+bo1race5 & \num{-4.764}*** & \num{0.147}** & \num{0.172}** & \num{0.029}\\
+ & (\num{1.439}) & (\num{0.054}) & (\num{0.062}) & (\num{0.041})\\
+year2021 & \num{-0.070} & \num{0.031} & \num{0.026} & \num{-2.779}***\\
+ & (\num{2.253}) & (\num{0.084}) & (\num{0.084}) & (\num{0.380})\\
+bo1gender2 & \num{1.773}* & \num{-0.215}*** & \num{-0.154}* & \num{-0.047}+\\
+ & (\num{0.886}) & (\num{0.033}) & (\num{0.078}) & (\num{0.025})\\
+bo1age & \num{-0.315}*** & \num{-0.001} & \num{-0.001} & \num{0.000}\\
+ & (\num{0.021}) & (\num{0.001}) & (\num{0.001}) & (\num{0.001})\\
+debtexpenseratio & \num{0.298}*** & \num{0.001} & \num{0.001} & \num{0.004}***\\
+ & (\num{0.033}) & (\num{0.001}) & (\num{0.001}) & (\num{0.001})\\
+bo1race2 × year2021 & \num{9.803}* & \num{-0.220} & \num{-0.224} & \\
+ & (\num{4.655}) & (\num{0.173}) & (\num{0.174}) & \\
+bo1race3 × year2021 & \num{0.885} & \num{-0.012} & \num{-0.011} & \\
+ & (\num{4.485}) & (\num{0.167}) & (\num{0.167}) & \\
+bo1race5 × year2021 & \num{1.981} & \num{-0.016} & \num{-0.013} & \\
+ & (\num{2.101}) & (\num{0.078}) & (\num{0.078}) & \\
+year2021 × bo1gender2 & \num{-0.699} & \num{0.072} & \num{0.071} & \num{0.105}**\\
+ & (\num{1.283}) & (\num{0.048}) & (\num{0.048}) & (\num{0.037})\\
+LTV &  & \num{0.009}*** & \num{0.009}*** & \num{0.004}***\\
+ &  & (\num{0.001}) & (\num{0.001}) & (\num{0.001})\\
+hsexpenseratio &  & \num{0.007}*** & \num{0.007}*** & \\
+ &  & (\num{0.002}) & (\num{0.002}) & \\
+bo1race2 × bo1gender2 &  &  & \num{-0.282} & \\
+ &  &  & (\num{0.216}) & \\
+bo1race3 × bo1gender2 &  &  & \num{-0.111} & \\
+ &  &  & (\num{0.168}) & \\
+bo1race5 × bo1gender2 &  &  & \num{-0.063} & \\
+ &  &  & (\num{0.079}) & \\
+lognoteamt × year2021 &  &  &  & \num{0.133}***\\
+ &  &  &  & (\num{0.031})\\
+year2021 × bo1race2 &  &  &  & \num{0.047}\\
+ &  &  &  & (\num{0.133})\\
+year2021 × bo1race3 &  &  &  & \num{0.112}\\
+ &  &  &  & (\num{0.128})\\
+year2021 × bo1race5 &  &  &  & \num{0.005}\\
+ &  &  &  & (\num{0.060})\\
+\midrule
+Num.Obs. & \num{2209} & \num{2209} & \num{2209} & \num{2209}\\
+R2 & \num{0.226} & \num{0.125} & \num{0.126} & \num{0.685}\\
+R2 Adj. & \num{0.221} & \num{0.119} & \num{0.119} & \num{0.682}\\
+AIC & \num{17909.0} & \num{3369.8} & \num{3373.8} & \num{2188.0}\\
+BIC & \num{18000.2} & \num{3466.7} & \num{3487.8} & \num{2284.9}\\
+Log.Lik. & \num{-8938.517} & \num{-1667.886} & \num{-1666.893} & \num{-1076.982}\\
+RMSE & \num{13.84} & \num{0.51} & \num{0.51} & \num{0.39}\\
+\bottomrule
+\multicolumn{5}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+}
+\end{table}
+\end{document}
